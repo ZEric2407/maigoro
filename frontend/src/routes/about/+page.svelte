@@ -4,7 +4,7 @@
 	import { HeartSolid } from 'flowbite-svelte-icons';
 </script>
 
-<p class="about-text" style="margin-top: 20px;">
+<p class="about-text" style="margin-top: 25px;">
 	Are you tired of accidentally eating dog meat while visiting a foreign country or finding bugs in your 
 	cheese? Are you constantly annoyed at having to decipher hieroglyphs-like writting when you travel the 
 	world? Don't worry, we got you! Maigoro is a handy app designed to make sure that you
@@ -13,12 +13,12 @@
 	of whatever you may bite into! 
 </p>
 
-<Section name="faq" sectionClass="py-0 [&>div]:py-8">
+<Section name="faq" sectionClass="py-0 [&>div]:py-8 max-w-full">
 	<h2 class="mb-4 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
 		Frequently Asked Questions (FAQ)
 	</h2>
 	<Faq>
-		<div>
+		<div class="max-w-full">
 			<FaqItem>
 				<svelte:fragment slot="h3">What does "Maigorou" mean?</svelte:fragment>
 				<p class="text-gray-500 dark:text-gray-400">
