@@ -4,21 +4,21 @@
 	import { HeartSolid } from 'flowbite-svelte-icons';
 </script>
 
-<p class="about-text" style="margin-top: 25px;">
+<p class="about-text mx-20" style="margin-top: 25px;">
 	Are you tired of accidentally eating dog meat while visiting a foreign country or finding bugs in your 
 	cheese? Are you constantly annoyed at having to decipher hieroglyphs-like writting when you travel the 
 	world? Don't worry, we got you! Maigoro is a handy app designed to make sure that you
     know exactly what you are looking at: Just take a picture and we'll provide you with descriptions, 
 	translations to a language of your choice, as well as some cultural context 
-	of whatever you may bite into! 
+	of whatever you may bite into! x``
 </p>
 
 <Section name="faq" sectionClass="py-0 [&>div]:py-8 w-full">
-	<h2 class="mb-4 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+	<h2 class="mb-8 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
 		Frequently Asked Questions (FAQ)
 	</h2>
 	<Faq>
-		<div class="w-full">
+		<div>
 			<FaqItem>
 				<svelte:fragment slot="h3">What does "Maigorou" mean?</svelte:fragment>
 				<p class="text-gray-500 dark:text-gray-400">
@@ -30,34 +30,32 @@
 					allow one to reach a deeper level of understanding of their environment.
 				</p>
 			</FaqItem>
-		</div>
-		<div class="w-full">
 			<FaqItem>
 				<svelte:fragment slot="h3">What key features can Maigoro offer?</svelte:fragment>
 				<p class="text-gray-500 dark:text-gray-400">
 					Maigoro offers translation services, cultural significance and context information, and more!
 				</p>
 			</FaqItem>
-		</div>
-		<div class="w-full">
 			<FaqItem>
-				<svelte:fragment slot="h3">Who can use Maigoro?</svelte:fragment>
+				<svelte:fragment slot="h3"
+					>Who can use Maigoro?</svelte:fragment
+				>
 				<p class="text-gray-500 dark:text-gray-400">
 					Anyone with a camera can use Maigoro!
 				</p>
 			</FaqItem>
 		</div>
-		<div class="w-full">
+		<div>
 			<FaqItem>
 				<svelte:fragment slot="h3">Can I upload pictures directly from my app?</svelte:fragment>
 				<p class="text-gray-500 dark:text-gray-400">
 					Yes, you may also import a picture of your choice.
 				</p>
 			</FaqItem>
-		</div>
-		<div class="w-full">
 			<FaqItem>
-				<svelte:fragment slot="h3">What's to come?</svelte:fragment>
+				<svelte:fragment slot="h3"
+					>What's to come?</svelte:fragment
+				>
 				<p class="text-gray-500 dark:text-gray-400">
 					We are currently researching and developing hardware that people with disabilities can use such as 
 					wearable devices that will scan the surroundings of one's environment and communicate it
