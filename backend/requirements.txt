@@ -2,6 +2,7 @@ Flask
 Flask-CORS
 flask-restful
 flask-sqlalchemy
+python-dotenv
 pytesseract
 Pillow
 requests
