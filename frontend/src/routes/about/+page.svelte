@@ -14,7 +14,7 @@
 </p>
 
 <Section name="faq" sectionClass="py-0 [&>div]:py-8">
-	<h2 class="mb-8 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+	<h2 class="mb-4 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
 		Frequently Asked Questions (FAQ)
 	</h2>
 	<Faq>
