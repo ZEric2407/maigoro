@@ -22,7 +22,7 @@
     <h2 class="text-3xl font-semibold text-gray-800 dark:text-white mb-4">Welcome to Maigoro</h2>
     <p class="text-1x1 text-gray-600 dark:text-gray-300 mb-6">
         Capture everything in a single frame bringing stories and senses together. <br> Enrich your mind 
-        with wisdom and knowledge with the new cultural context feature and become Mr. Worldwide!
+        with wisdom and knowledge with the new cultural context feature!
     </p>
     <p class="text-2x1 text-gray-600 dark:text-gray-300">
         Seize the moment by capturing the cultural essence and share the story beyond a snapshot.
