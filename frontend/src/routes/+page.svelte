@@ -30,8 +30,10 @@
 			<GradientButton 
 				color='pinkToOrange'
 				size="xl"
-				class="inline-flex items-center justify-center"			>
-				Get Started <ArrowRightOutline size="md" class="-mr-1 ml-2" />
+				class="inline-flex items-center justify-center"	>
+				<a href="/take-picture" class="inline-flex items-center justify-center">
+                    Get Started <ArrowRightOutline size="md" class="-mr-1 ml-2" />
+                </a>
 			</GradientButton>
 		</HeroHeader>
 	</div>
