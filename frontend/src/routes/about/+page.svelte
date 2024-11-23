@@ -17,8 +17,8 @@
 	<h2 class="mb-4 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
 		Frequently Asked Questions (FAQ)
 	</h2>
-	<Faq>
-		<div class="w-full">
+	
+		
 			<FaqItem>
 				<svelte:fragment slot="h3">What does "Maigorou" mean?</svelte:fragment>
 				<p class="text-gray-500 dark:text-gray-400">
@@ -30,32 +30,28 @@
 					allow one to reach a deeper level of understanding of their environment.
 				</p>
 			</FaqItem>
-		</div>
-		<div class="w-full">
+		
 			<FaqItem>
 				<svelte:fragment slot="h3">What key features can Maigoro offer?</svelte:fragment>
 				<p class="text-gray-500 dark:text-gray-400">
 					Maigoro offers translation services, cultural significance and context information, and more!
 				</p>
 			</FaqItem>
-		</div>
-		<div class="w-full">
+	
 			<FaqItem>
 				<svelte:fragment slot="h3">Who can use Maigoro?</svelte:fragment>
 				<p class="text-gray-500 dark:text-gray-400">
 					Anyone with a camera can use Maigoro!
 				</p>
 			</FaqItem>
-		</div>
-		<div class="w-full">
+	
 			<FaqItem>
 				<svelte:fragment slot="h3">Can I upload pictures directly from my app?</svelte:fragment>
 				<p class="text-gray-500 dark:text-gray-400">
 					Yes, you may also import a picture of your choice.
 				</p>
 			</FaqItem>
-		</div>
-		<div class="w-full">
+		
 			<FaqItem>
 				<svelte:fragment slot="h3">What's to come?</svelte:fragment>
 				<p class="text-gray-500 dark:text-gray-400">
@@ -64,8 +60,8 @@
 					to the user.	
 				</p>
 			</FaqItem>
-		</div>
-	</Faq>
+	
+
 </Section>
 
 <style>
