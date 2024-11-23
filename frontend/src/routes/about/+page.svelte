@@ -10,7 +10,7 @@
 	world? Don't worry, we got you! Maigoro is a handy app designed to make sure that you
     know exactly what you are looking at: Just take a picture and we'll provide you with descriptions, 
 	translations to a language of your choice, as well as some cultural context 
-	of whatever you may bite into! x``
+	of whatever you may bite into! 
 </p>
 
 <Section name="faq" sectionClass="py-0 [&>div]:py-8 w-full">
