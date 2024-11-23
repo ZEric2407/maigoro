@@ -24,30 +24,32 @@
 
 </script>
 
-<div class="container mx-auto">
+<!-- Header -->
 	<Navbar
 		rounded
-		color="form"
-		class="sticky start-0 top-0 z-20 w-full px-2 py-2.5 sm:px-4"
-		id="top-nav"
-	>
-		<NavBrand href="/" on:click={reloadPage}>
-			<img src="/tibo.jpg" class="ml-2 mr-2 h-16 w-16 rounded-full" alt="Logo" />
-			<P class="font-sans text-xl font-semibold text-[#4C8C2B]">Maigoro</P>
-		</NavBrand>
+	color="form"
+	class="sticky start-0 top-0 z-20 w-full px-2 py-2.5 sm:px-4"
+	id="top-nav"
+>
+	<NavBrand href="/" on:click={reloadPage}>
+		<img src="/images/tibo.jpg" class="ml-2 mr-2 h-16 w-16 rounded-full" alt="Logo" />
+		<P class="font-sans text-xl font-semibold text-[#4C8C2B]">Maigoro</P>
+	</NavBrand>
 
-		<div class="flex md:order-2">
-			<DarkMode />
-			<NavHamburger />
-		</div>
-
+	<div class="flex justify-end">
 		<NavUl>
-			<NavLi href="/" class="mr-4" on:click={reloadPage}>Home</NavLi>
 			<NavLi href="/about" class="mr-4">About</NavLi>
 			<NavLi href="/contact-us" class="mr-4">Contact Us</NavLi>
 		</NavUl>
-	</Navbar>
-</div>
+		<DarkMode/>
+
+	</div>
+</Navbar>
+
+<!-- Slot: Where the actual page layout goes -->
+<main class="mx-48">
+	<slot />
+</main>
 
 
 <!-- Footer -->
