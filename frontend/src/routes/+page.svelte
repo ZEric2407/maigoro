@@ -44,33 +44,3 @@
 	</div>
 </Section>
 
-
-<!-- <div class="flex justify-center w-full mt-20">
-    <div class="max-w-4xl w-full">
-        <Carousel {images} duration="3000" let:Indicators>
-            <Indicators />
-        </Carousel>
-    </div>
-</div>
-
-<div class="text-center mt-12 px-4">
-    <h2 class="text-3xl font-semibold text-gray-800 dark:text-white mb-4">Welcome to Maigoro</h2>
-    <p class="text-1x1 text-gray-600 dark:text-gray-300 mb-6">
-        Capture everything in a single frame bringing stories and senses together. <br> Enrich your mind 
-        with wisdom and knowledge with the new cultural context feature!
-    </p>
-    <p class="text-2x1 text-gray-600 dark:text-gray-300 mb-6">
-        Seize the moment by capturing the cultural essence and share the story beyond a snapshot.
-    </p>
-
-    <div class="flex justify-center mt-6 mb-6">
-        <div class="flex flex-wrap gap-2">
-            <Button outline color="purple">Get Started</Button>
-        </div>
-    </div>
-    <p class="text-2x1 text-gray-600 dark:text-gray-300 mb-6">
-        Maigoro is free for infinite and beyond
-    </p>
-
-</div> -->
-
