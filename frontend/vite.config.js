@@ -1,9 +1,6 @@
-const { sveltekit } = require("@sveltejs/kit/vite");
-const { defineConfig } = require("vitest/config");
+import { sveltekit } from '@sveltejs/kit/vite';
+import { defineConfig } from 'vite';
 
-module.exports = defineConfig({
-  plugins: [sveltekit()],
-  test: {
-    include: ["src/**/*.{test,spec}.{js,ts}"],
-  },
+export default defineConfig({
+	plugins: [sveltekit()]
 });

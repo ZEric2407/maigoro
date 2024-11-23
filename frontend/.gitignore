@@ -1,18 +1,22 @@
+test-results
 node_modules
+
+# Output
 .output
 .vercel
 /.svelte-kit
+/build
 
-# System files
+# OS
 .DS_Store
 Thumbs.db
 
-# Virtual environments
+# Env
 .env
 .env.*
 !.env.example
 !.env.test
 
-# Logs and temporary files
+# Vite
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
