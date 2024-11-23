@@ -21,7 +21,7 @@
 <div class="text-center mt-12 px-4">
     <h2 class="text-3xl font-semibold text-gray-800 dark:text-white mb-4">Welcome to Maigoro</h2>
     <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">
-        /* write here */
+        Understanding Taste, Tradition, and Culture
     </p>
     <p class="text-lg text-gray-600 dark:text-gray-300">
         /* write here */
