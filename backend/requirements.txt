@@ -10,3 +10,4 @@ opencv-python
 faiss-cpu
 google-cloud-translate
 google-cloud-vision
+openai
