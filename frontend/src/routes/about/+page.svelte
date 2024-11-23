@@ -34,21 +34,23 @@
 			<FaqItem>
 				<svelte:fragment slot="h3">What key features can Maigoro offer?</svelte:fragment>
 				<p class="text-gray-500 dark:text-gray-400">
-					Maigoro offers translation services, cultural significance and context information, and more!
+					Translation Services – Snap a photo or input text to instantly translate into multiple languages.<br>
+Cultural Significance and Context – Get detailed insights about cultural artifacts, symbols, or phrases to enhance understanding.<br>
+Guided Wisdom – Use Maigoro as a tool for self-reflection by analyzing situations and offering advice rooted in philosophical or spiritual traditions.
 				</p>
 			</FaqItem>
 	
 			<FaqItem>
 				<svelte:fragment slot="h3">Who can use Maigoro?</svelte:fragment>
 				<p class="text-gray-500 dark:text-gray-400">
-					Anyone with a camera can use Maigoro!
+					Anyone with a smartphone or camera can use Maigoro to explore the world with enhanced insights and wisdom. With just a photo, you unlock a gateway to understanding your surroundings on a deeper level.
 				</p>
 			</FaqItem>
 	
 			<FaqItem>
 				<svelte:fragment slot="h3">Can I upload pictures directly from my app?</svelte:fragment>
 				<p class="text-gray-500 dark:text-gray-400">
-					Yes, you may also import a picture of your choice.
+					Yes! Whether you capture an image using the app or import a photo from your library, Maigoro makes it easy to explore and learn.
 				</p>
 			</FaqItem>
 		
@@ -57,7 +59,8 @@
 				<p class="text-gray-500 dark:text-gray-400">
 					We are currently researching and developing hardware that people with disabilities can use such as 
 					wearable devices that will scan the surroundings of one's environment and communicate it
-					to the user.	
+					to the user. These devices will scan and interpret the environment, providing auditory or tactile 
+					feedback to users, enabling a more connected and accessible experience.	
 				</p>
 			</FaqItem>
 	
