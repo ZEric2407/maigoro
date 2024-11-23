@@ -1,4 +1,4 @@
-# maigoro
+# maigoro (pronounced "my guru")
 
 # Project Setup Guide
 
