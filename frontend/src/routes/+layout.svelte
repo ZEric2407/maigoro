@@ -31,7 +31,7 @@
 	id="top-nav"
 >
 	<NavBrand href="/" on:click={reloadPage}>
-		<img src="/images/tibo.jpg" class="ml-2 mr-2 h-16 w-16 rounded-full" alt="Logo" />
+		<img src="/images/codejam1.jpg" class="ml-2 mr-2 h-16 w-16 rounded-full" alt="Logo" />
 		<P class="font-sans text-xl font-semibold text-[black]">Maigoro</P>
 	</NavBrand>
 
