@@ -1,1 +1,0 @@
-from .ocr import detect_text

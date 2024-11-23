@@ -1,4 +1,4 @@
-import jsonify
+import json
 
 class text_translation:
     def __init__(self, src_language = "en", target_language = "en", cultural_significance = "", image_url = "", original_text = "",
@@ -58,6 +58,6 @@ class text_translation:
     def translated_text(self, txt):
         self._translated_text = txt
 
-    def jsoninfy(self):
-        fields = {field : val for field, val in self.__dict__ if len(field.strip("_")) == len(field) and not callable(val)}
-        return jsonify(fields)
+    def __string__(self):
+        fields = {field.strip("_") : val for field, val in self.__dict__.items()}
+        return json.dumps(fields)
