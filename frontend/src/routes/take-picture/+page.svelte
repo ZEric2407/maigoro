@@ -1,160 +1,171 @@
 <script>
-    import { Dropzone, Button } from 'flowbite-svelte';
-  
-    let value = [];
-    let videoSource;
-    let canvas = null;
-    let loading = false;
-    let stream = null;
-    let isCameraOpen = false; 
-  
-    const dropHandle = (event) => {
-      value = [];
-      event.preventDefault();
-      if (event.dataTransfer.items) {
-        [...event.dataTransfer.items].forEach((item) => {
-          if (item.kind === 'file') {
-            const file = item.getAsFile();
-            value.push(file.name);
-          }
-        });
-      } else {
-        [...event.dataTransfer.files].forEach((file) => {
-          value = file.name;
-        });
-      }
-    };
-  
-    const handleChange = (event) => {
-      const files = event.target.files;
-      if (files.length > 0) {
-        value.push(files[0].name);
-      }
-    };
-  
-    const showFiles = (files) => {
-      if (files.length === 1) return files[0];
-      let concat = '';
-      files.map((file) => {
-        concat += file;
-        concat += ', ';
-      });
-      if (concat.length > 40) concat = concat.slice(0, 40);
-      concat += '...';
-      return concat;
-    };
-  
-    const handleButtonClick = (event) => {
-      event.stopPropagation();
-      if (!isCameraOpen) {
-        isCameraOpen = true;  
-        obtenerVideoCamara();  
-      } else {
-        capturePhoto();  
-      }
-    };
-  
-    const obtenerVideoCamara = async () => {
-      try {
-        loading = true;
-        stream = await navigator.mediaDevices.getUserMedia({ video: true });
+  import { onMount } from 'svelte';
+
+  let savedImage = null;
+  let isCameraOpen = false;
+  let isPhotoCaptured = false;
+  let capturedPhoto = null;
+  let stream = null;
+  let videoSource;
+
+  const dropHandle = (event) => {
+    event.preventDefault();
+    const files = event.dataTransfer?.files || event.target?.files;
+
+    if (files && files.length > 0) {
+      const reader = new FileReader();
+      reader.onload = (e) => (savedImage = e.target.result);
+      reader.readAsDataURL(files[0]);
+    }
+  };
+
+  const openCamera = async () => {
+    try {
+      isCameraOpen = true;
+      isPhotoCaptured = false;
+      capturedPhoto = null;
+      stream = await navigator.mediaDevices.getUserMedia({ video: true });
+      if (videoSource) {
         videoSource.srcObject = stream;
         videoSource.play();
-        loading = false;
-      } catch (error) {
-        console.log(error);
       }
-    };
-  
-    const capturePhoto = () => {
-      canvas = document.createElement('canvas');
-      const context = canvas.getContext('2d');
-      canvas.width = videoSource.videoWidth;
-      canvas.height = videoSource.videoHeight;
-      context.drawImage(videoSource, 0, 0, canvas.width, canvas.height);
-  
-      const photoUrl = canvas.toDataURL('image/png');
-      value = [photoUrl];  
-      stopCamera();  
-      isCameraOpen = false;  
-    };
-  
-    const stopCamera = () => {
-      if (stream) {
-        const tracks = stream.getTracks();
-        tracks.forEach((track) => track.stop());
-      }
-    };
-  
-    const closeCamera = () => {
-      stopCamera();
-      isCameraOpen = false;  
-    };
-  </script>
-  
-  <Dropzone
-  id="dropzone"
-  class="relative my-8 border-2 border-dashed border-gray-400 p-6 overflow-hidden w-full max-w-lg h-80 mx-auto" 
-  on:drop={dropHandle}
-  on:dragover={(event) => {
-    event.preventDefault();
-  }}
-  on:change={handleChange}>
-  
-  <svg
-    aria-hidden="true"
-    class="mb-3 w-10 h-10 text-gray-400"
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
-    xmlns="http://www.w3.org/2000/svg">
-    <path
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      stroke-width="2"
-      d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-  </svg>
+    } catch (error) {
+      console.error('Camera access denied:', error);
+    }
+  };
 
-  {#if value.length === 0}
-    <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">
-      <span class="font-semibold">Click to upload</span> or drag and drop
-    </p>
-    <p class="text-xs text-gray-500 dark:text-gray-400">
-      SVG, PNG, JPG or GIF (MAX. 800x400px)
-    </p>
+  const capturePhoto = () => {
+  if (!videoSource) return;
+
+  const canvas = document.createElement('canvas');
+  canvas.width = videoSource.videoWidth;
+  canvas.height = videoSource.videoHeight;
+
+  const ctx = canvas.getContext('2d');
+  ctx.drawImage(videoSource, 0, 0, canvas.width, canvas.height);
+
+  capturedPhoto = canvas.toDataURL('image/png');
+  isPhotoCaptured = true;
+
+  // Pause the video feed
+  videoSource.pause();
+};
+
+  const retakePhoto = () => {
+    capturedPhoto = null;
+    isPhotoCaptured = false;
+    videoSource.play();
+  };
+
+  const submitPhoto = () => {
+    savedImage = capturedPhoto;
+    closeCamera();
+  };
+
+  const closeCamera = () => {
+    if (stream) {
+      stream.getTracks().forEach((track) => track.stop());
+      stream = null;
+    }
+    isCameraOpen = false;
+  };
+
+  const removeImage = () => {
+    savedImage = null;
+  };
+
+  onMount(() => {
+    // Optional cleanup if necessary
+    return () => {
+      if (stream) {
+        stream.getTracks().forEach((track) => track.stop());
+      }
+    };
+  });
+</script>
+
+
+<div class="my-8 mx-auto max-w-lg p-4 border rounded-lg shadow">
+  {#if savedImage}
+    <!-- Show saved image -->
+    <div class="relative">
+      <button
+        class="absolute top-2 right-2 bg-gray-200 rounded-full p-2"
+        onclick={removeImage}>
+        ✕
+      </button>
+      <img src={savedImage} alt="Saved" class="w-full h-auto" />
+    </div>
   {:else}
-    {#if value[0].startsWith('data:image')}
-      <img src={value[0]} alt="Captured" class="w-full" />
-    {:else}
-      <p>{showFiles(value)}</p>
-    {/if}
+    <!-- Show dropzone -->
+    <div
+      class="relative border-2 border-dashed border-gray-400 p-6 h-80 flex flex-col items-center justify-center"
+      role="button"
+      tabindex="0"
+      ondrop={dropHandle}
+      ondragover={(event) => event.preventDefault()}
+      onclick={() => document.querySelector('input[type="file"]').click()}
+      onkeydown={(event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          document.querySelector('input[type="file"]').click();
+        }
+      }}>
+      <svg
+        aria-hidden="true"
+        class="mb-3 w-10 h-10 text-gray-400"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg">
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+      </svg>
+      <p class="text-gray-500 text-sm mb-2">Drag and drop or click to upload</p>
+      <p class="text-xs text-gray-400">PNG, JPG, GIF</p>
+      <input
+        type="file"
+        accept="image/png, image/jpeg, image/gif"
+        class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
+        onchange={dropHandle}
+      />
+    </div>
   {/if}
 
-  <div class="flex justify-center mt-10 mb-6 z-10">
-    <div class="flex flex-wrap gap-1">
-      <Button outline color="purple" on:click={handleButtonClick}>
-        {#if isCameraOpen}
-          Capture Photo
-        {:else}
-          Take Photo
-        {/if}
-      </Button>
-    </div>
-  </div>
-</Dropzone>
-
   {#if isCameraOpen}
+    <!-- Camera view -->
     <div class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50">
       <div class="bg-white p-6 rounded-lg relative">
-        <video bind:this={videoSource} class="w-96 h-96 object-cover" autoplay playsinline>
+        <video bind:this={videoSource} autoplay playsinline class="w-96 h-96 object-cover">
           <track kind="captions" src="" />
         </video>
-        <div class="absolute top-0 right-0 p-2">
-          <Button outline color="red" on:click={closeCamera}>Close</Button>
-        </div>
-        <div class="flex justify-center mt-4">
-          <Button color="green" on:click={capturePhoto}>Capture</Button>
+        <div class="flex justify-center gap-4 mt-4">
+          {#if isPhotoCaptured}
+            <!-- Options after capturing a photo -->
+            <button class="bg-yellow-500 text-white px-4 py-2 rounded" onclick={retakePhoto}>
+              Retake
+            </button>
+            <button class="bg-green-500 text-white px-4 py-2 rounded" onclick={submitPhoto}>
+              Submit
+            </button>
+          {:else}
+            <!-- Capture and Close options -->
+            <button class="bg-blue-500 text-white px-4 py-2 rounded" onclick={capturePhoto}>
+              Capture Photo
+            </button>
+            <button class="bg-red-500 text-white px-4 py-2 rounded" onclick={closeCamera}>
+              Close Camera
+            </button>
+          {/if}
         </div>
       </div>
     </div>
+  {:else if !savedImage}
+    <button class="mt-4 bg-purple-500 text-white px-4 py-2 rounded" onclick={openCamera}>
+      Open Camera
+    </button>
   {/if}
+</div>
