@@ -27,13 +27,12 @@
 <!-- Header -->
 	<Navbar
 		rounded
-	color="form"
 	class="sticky start-0 top-0 z-20 w-full px-2 py-2.5 sm:px-4"
 	id="top-nav"
 >
 	<NavBrand href="/" on:click={reloadPage}>
 		<img src="/images/tibo.jpg" class="ml-2 mr-2 h-16 w-16 rounded-full" alt="Logo" />
-		<P class="font-sans text-xl font-semibold text-[#4C8C2B]">Maigoro</P>
+		<P class="font-sans text-xl font-semibold text-[black]">Maigoro</P>
 	</NavBrand>
 
 	<div class="flex justify-end">
@@ -47,7 +46,7 @@
 </Navbar>
 
 <!-- Slot: Where the actual page layout goes -->
-<main class="mx-48">
+<main class="mx-4">
 	<slot />
 </main>
 
