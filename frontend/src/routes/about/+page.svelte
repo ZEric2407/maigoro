@@ -4,7 +4,7 @@
 	import { HeartSolid } from 'flowbite-svelte-icons';
 </script>
 
-<p class="about-text">
+<p class="about-text" style="margin-top: 20px;">
 	Are you tired of accidentally eating dog meat while visiting a foreign country or finding bugs in your 
 	cheese? Are you constantly annoyed at having to decipher hieroglyphs-like writting when you travel the 
 	world? Don't worry, we got you! Maigoro is a handy app designed to make sure that you
