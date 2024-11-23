@@ -1,8 +1,11 @@
 Flask
 Flask-CORS
+flask-restful
+flask-sqlalchemy
 pytesseract
 Pillow
-googletrans==4.0.0-rc1
 requests
-opencv-python
+opencv-python   
 faiss-cpu
+google-cloud-translate
+google-cloud-vision
