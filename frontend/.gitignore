@@ -1,0 +1,18 @@
+node_modules
+.output
+.vercel
+/.svelte-kit
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Virtual environments
+.env
+.env.*
+!.env.example
+!.env.test
+
+# Logs and temporary files
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
