@@ -34,8 +34,8 @@
 				<svelte:fragment slot="h3">What key features can Maigoro offer?</svelte:fragment>
 				<p class="text-gray-500 dark:text-gray-400">
 					Translation Services – Snap a photo or input text to instantly translate into multiple languages.<br>
-Cultural Significance and Context – Get detailed insights about cultural artifacts, symbols, or phrases to enhance understanding.<br>
-Guided Wisdom – Use Maigoro as a tool for self-reflection by analyzing situations and offering advice rooted in philosophical or spiritual traditions.
+					Cultural Significance and Context – Get detailed insights about cultural artifacts, symbols, or phrases to enhance understanding.<br>
+				Guided Wisdom – Use Maigoro as a tool for self-reflection by analyzing situations and offering advice rooted in philosophical or spiritual traditions.
 				</p>
 			</FaqItem>
 			<FaqItem>
@@ -65,8 +65,9 @@ Guided Wisdom – Use Maigoro as a tool for self-reflection by analyzing situati
 					feedback to users, enabling a more connected and accessible experience.	
 				</p>
 			</FaqItem>
-	
 
+		</div>
+	</Faq>
 </Section>
 
 <style>
