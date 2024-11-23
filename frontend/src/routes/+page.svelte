@@ -1,5 +1,5 @@
 <script>
-    import { Carousel } from 'flowbite-svelte';
+    import { Carousel, Button } from 'flowbite-svelte';
     
     const images = [
          { src: '/images/codejam1.jpg'},
@@ -18,4 +18,20 @@
     </div>
 </div>
 
+<div class="text-center mt-12 px-4">
+    <h2 class="text-3xl font-semibold text-gray-800 dark:text-white mb-4">Welcome to Maigoro</h2>
+    <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">
+        /* write here */
+    </p>
+    <p class="text-lg text-gray-600 dark:text-gray-300">
+        /* write here */
+    </p>
+
+    <div class="flex justify-center mt-6">
+        <div class="flex flex-wrap gap-2">
+            <Button outline color="purple">Get Started</Button>
+        </div>
+    </div>
+
+</div>
 
