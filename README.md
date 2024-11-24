@@ -24,7 +24,10 @@ This project consists of a Python/Flask backend and a SvelteKit frontend. Follow
    ```bash
    pip install -r requirements.txt
    ```
-
+3. **Initialize the database**:
+   ```
+   py model.py
+   ```
 ---
 
 ## Frontend Setup
