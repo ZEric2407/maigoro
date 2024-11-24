@@ -5,12 +5,12 @@
 </script>
 
 <p class="about-text mx-20" style="margin-top: 25px;">
-	Are you tired of accidentally eating dog meat while visiting a foreign country or finding bugs in your 
-	cheese? Are you constantly annoyed at having to decipher hieroglyphs-like writting when you travel the 
-	world? What about hard-to-read road signs that are too confusing? Don't worry, we got you! Maigoro is a handy app designed to make sure that you
-    know exactly what you are looking at: Just take a picture and we'll provide you with descriptions, 
-	translations to a language of your choice, as well as some cultural context 
-	of whatever you may bite into! 
+	Are you tired of accidentally eating repugnant food while visiting a foreign country or finding bugs 
+	in your cheese? Are you constantly annoyed at having to decipher cryptic writing when you travel the 
+	world? What about hard-to-read road signs that are too confusing? Don't worry, we got you! Maigoro 
+	is a handy tool designed to make sure that you know exactly what you are looking at: Just take a 
+	picture and we'll provide you with descriptions, translations to a language of your choice, as 
+	well as some cultural context of whatever you may bite into! 
 </p>
 
 <Section name="faq" sectionClass="py-0 [&>div]:py-8 w-full">
@@ -58,7 +58,7 @@
 					>What's to come?</svelte:fragment
 				>
 				<p class="text-gray-500 dark:text-gray-400">
-					This project can be expanded by developping hardware that people with disabilities can use such as 
+					This project can be expanded by developing hardware that people with disabilities can use such as 
 					wearable devices that will scan the surroundings of one's environment and communicate it
 					to the user. These devices will scan and interpret the environment, providing auditory or tactile 
 					feedback to users, enabling a more connected and accessible experience.	
