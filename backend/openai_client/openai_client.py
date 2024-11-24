@@ -88,7 +88,7 @@ def landmarks(l_instance):
     landmarks = l_instance.description
 
     landmark_query = (
-        "ChatGPT: [SHORTEN: For each of the following landmarks in the following list: " + landmarks +
+        "ChatGPT: [SHORTEN: For the following landmark: " + landmarks +
         ", give an interesting fact about it in a few words]"
     )
 
