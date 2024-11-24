@@ -170,24 +170,32 @@
     markers.push(marker);
 }   
 
-    async function fetchNearbyPlaces(type) {
-        markers.forEach((marker) => marker.setMap(null)); // Clear existing markers
-        markers = [];
+async function fetchNearbyPlaces(type) {
+    markers.forEach((marker) => marker.setMap(null)); // Clear existing markers
+    markers = [];
 
-        const { PlacesService, PlacesServiceStatus } = await google.maps.importLibrary("places");
-        const service = new PlacesService(map);
-        const request = {
-            location: mapCenter,
-            radius: 1000, // Search within 1km
-            type,
-        };
+    // Get the current center of the map dynamically
+    const currentCenter = map.getCenter();
+    const location = {
+        lat: currentCenter.lat(),
+        lng: currentCenter.lng(),
+    };
 
-        service.nearbySearch(request, (results, status) => {
-            if (status === PlacesServiceStatus.OK) {
-                results.forEach(createMarker);
-            }
-        });
-    }
+    const { PlacesService, PlacesServiceStatus } = await google.maps.importLibrary("places");
+    const service = new PlacesService(map);
+
+    const request = {
+        location, // Use the updated location
+        radius: 1000, // Search within 1km
+        type,
+    };
+
+    service.nearbySearch(request, (results, status) => {
+        if (status === PlacesServiceStatus.OK) {
+            results.forEach(createMarker);
+        }
+    });
+}
 
     onMount(async () => {
         try {
@@ -199,7 +207,7 @@
 
         if (!window.google) {
             const script = document.createElement("script");
-            script.src = `https://maps.googleapis.com/maps/api/js?key=INSERT_API_KEY`;
+            script.src = `https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY`;
             script.async = true;
             script.defer = true;
             script.onload = initializeMap;
