@@ -1,6 +1,16 @@
 <script>
   import { onMount } from 'svelte';
-   import { GradientButton } from 'flowbite-svelte';
+  import { GradientButton } from 'flowbite-svelte';
+  import { Label, Select } from 'flowbite-svelte';
+  
+  let source_lang_val = null;
+  let target_lang_val = null;
+
+  let countries = [
+    { value: null, name: 'Auto-Detect' },
+    { value: "en", name: 'English' },
+    { value: "fr", name: 'French' },
+  ];
 
   let savedImage = null;
   let isCameraOpen = false;
@@ -94,8 +104,8 @@
       },
       body: JSON.stringify({
         image: imageData,       // Required field
-        source_lang: null,      // Default to null
-        target_lang: null       // Default to null
+        source_lang: source_lang_val,      // Default to null
+        target_lang: target_lang_val       // Default to null
       }),
     });
 
@@ -119,8 +129,21 @@
       }
     };
   });
+  
 </script>
 
+<div style="display: flex; flex-direction:row; width:100%; margin-top:1%; justify-content:space-between">
+  <Label style="margin-left:20%">
+    Source Language
+    <Select class="mt-2" style="width:200%" items={countries} bind:value={source_lang_val} />
+  </Label>
+
+
+  <Label style="margin-right:30%">
+    Target Language
+    <Select class="mt-2" style="width:200%" items={countries} bind:value={target_lang_val} />
+  </Label>
+</div>
 <div class="my-8 mx-auto w-5/6 h-3/4 p-6 border rounded-lg shadow overflow-y-auto">
   {#if savedImage}
     <!-- Show saved image -->
