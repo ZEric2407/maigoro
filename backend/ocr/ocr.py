@@ -47,7 +47,7 @@ def detect_landmark(path):
             logging.warning("No landmarks detected in the image.")
             return []
 
-        transactions = [LandmarkTransaction(landmark.description) for landmark in landmarks]
+        transactions = [LandmarkTransaction(landmark.description, image_url=path) for landmark in landmarks]
         logging.info(f"Landmark detection completed successfully for image: {path}")
         if not transactions:
             return
