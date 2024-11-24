@@ -49,7 +49,9 @@ def detect_landmark(path):
 
         transactions = [LandmarkTransaction(landmark.description) for landmark in landmarks]
         logging.info(f"Landmark detection completed successfully for image: {path}")
-        return transactions
+        if not transactions:
+            return
+        return transactions[0]
     except Exception as e:
         logging.error(f"Error during landmark detection: {e}")
         raise

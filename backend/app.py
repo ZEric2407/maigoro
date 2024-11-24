@@ -89,11 +89,10 @@ def describe_landmark():
         with open(filepath, "wb") as f:
             f.write(base64.b64decode(image_data))
 
-        transactions = ocr.ocr.detect_landmark(filepath)
-        for transaction in transactions:
-            openai_client.openai_client.landmarks(transaction)
-        response_body = {"transaction": [transaction.to_dict() for transaction in transactions]}, 200
-        repository.save_all(transactions)
+        transaction = ocr.ocr.detect_landmark(filepath)
+        openai_client.openai_client.landmarks(transaction)
+        response_body = {"transaction": transaction.to_dict()}, 200
+        repository.save(transaction)
         return response_body
     
     except Exception as e:
@@ -108,8 +107,7 @@ def uploaded_file(filename):
 if __name__ == "__main__":
     with app.app_context():
         # Example for testing OCR and translation
-        transactions = ocr.ocr.detect_landmark("uploads\\cn_tower.jpg")
-        for landmark in transactions:
-            openai_client.openai_client.landmarks(landmark)
-        repository.save_all(transactions)
+        transaction = ocr.ocr.detect_landmark("uploads\\cn_tower.jpg")
+        openai_client.openai_client.landmarks(transaction)
+        repository.save(transaction)
     # app.run(host="0.0.0.0", port=5000, debug=True)
