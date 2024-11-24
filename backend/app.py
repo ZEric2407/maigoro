@@ -71,11 +71,11 @@ def translate_picture():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-@app.route("/landmark", methods=["POST"])
+@app.route("/api/landmark", methods=["POST"])
 def describe_landmark():
     try:
         # Parse JSON data from the request
-        data = request
+        data = request.json
         image_data = data.get("image")
         
         if not image_data:
