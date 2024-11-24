@@ -99,6 +99,26 @@ def describe_landmark():
         logging.error(f"Error occurred: {e}")
         return jsonify({"error": str(e)}), 500
 
+@app.route("/api/gallery")
+def get_gallery():
+    try:
+        translations = repository.retrieve_all(False)
+        landmarks = repository.retrieve_all(True)
+        merged_lst = []
+        i = 0
+        while (len(merged_lst) < 3 and i < len(translations)):
+            merged_lst.append(translations[i])
+            i += 1
+        i = 0
+        while (len(merged_lst) < 6 and i < len(landmarks)):
+            merged_lst.append(landmarks[i])
+            i += 1
+        return {"transactions": [transaction.to_dict() for transaction in merged_lst]}
+    
+    except Exception as e:
+        logging.error(f"Error occurred: {e}")
+        return jsonify({"error": str(e)}), 500
+
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
     """Serve uploaded images."""

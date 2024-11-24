@@ -95,10 +95,12 @@ class LandmarkTransaction(Base):
     _id: Mapped[int] = mapped_column(name="id", primary_key=True, autoincrement=True)
     _description: Mapped[str] = mapped_column(name="description")
     _cultural_significance: Mapped[str] = mapped_column(name="cultural_significance")
+    _image_url: Mapped[str] = mapped_column(name="image_url")
 
-    def __init__(self, description = "", cultural_significance = ""):
+    def __init__(self, description = "", cultural_significance = "", image_url = ""):
         self._description = description
         self._cultural_significance = cultural_significance
+        self._image_url = image_url
 
     @property
     def description(self):
@@ -116,6 +118,14 @@ class LandmarkTransaction(Base):
     def cultural_significance(self, trivia):
         self._cultural_significance = trivia
 
+    @property
+    def image_url(self):
+        return self._image_url
+    
+    @image_url.setter
+    def image_url(self, url):
+        self._image_url = url
+        
     def to_dict(self):
         fields = {field.strip("_") : val for field, val in self.__dict__.items() if not field in ["_sa_instance_state"]}
         return fields
