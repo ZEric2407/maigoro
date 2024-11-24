@@ -10,7 +10,6 @@ This project consists of a Python/Flask backend and a SvelteKit frontend. Follow
 
 - **Python 3.8+** (for backend)
 - **Node.js and npm** (for frontend)
-- **Tesseract OCR** (install separately for OCR functionality in the backend)
 
 ---
 
