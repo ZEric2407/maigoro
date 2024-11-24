@@ -10,15 +10,20 @@
   let videoSource;
 
   const dropHandle = (event) => {
-    event.preventDefault();
-    const files = event.dataTransfer?.files || event.target?.files;
+  event.preventDefault();
+  const files = event.dataTransfer?.files || event.target?.files;
 
-    if (files && files.length > 0) {
-      const reader = new FileReader();
-      reader.onload = (e) => (savedImage = e.target.result);
-      reader.readAsDataURL(files[0]);
-    }
-  };
+  if (files && files.length > 0) {
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+      savedImage = e.target.result;
+
+      // Send the uploaded image to the backend
+      await sendImageToBackend(savedImage);
+    };
+    reader.readAsDataURL(files[0]);
+  }
+};
 
   const openCamera = async () => {
     try {
@@ -58,10 +63,15 @@
     videoSource.play();
   };
 
-  const submitPhoto = () => {
+  const submitPhoto = async () => {
+  if (capturedPhoto) {
     savedImage = capturedPhoto;
     closeCamera();
-  };
+
+    // Send the captured photo to the backend
+    await sendImageToBackend(savedImage);
+  }
+};
 
   const closeCamera = () => {
     if (stream) {
@@ -76,26 +86,30 @@
   };
 
   const sendImageToBackend = async (imageData) => {
-    try {
-      const response = await fetch('http://localhost:5000/api/translate', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ image: imageData }),
-      });
+  try {
+    const response = await fetch('http://localhost:5000/api/translate', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        image: imageData,       // Required field
+        source_lang: null,      // Default to null
+        target_lang: null       // Default to null
+      }),
+    });
 
-      if (response.ok) {
-        const data = await response.json();
-        console.log('Backend response:', data);
-        return data;
-      } else {
-        console.error('Error sending image to backend:', response.statusText);
-      }
-    } catch (error) {
-      console.error('Error during backend call:', error);
+    if (response.ok) {
+      const data = await response.json();
+      console.log('Backend response:', data);
+      return data;
+    } else {
+      console.error('Error sending image to backend:', response.statusText);
     }
-  };
+  } catch (error) {
+    console.error('Error during backend call:', error);
+  }
+};
 
   onMount(() => {
     // Optional cleanup if necessary

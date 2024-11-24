@@ -1,19 +1,34 @@
-import flask
+from flask import Flask, request, jsonify
+from flask_cors import CORS
 import ocr.ocr
 import translate.translator
 import repository
 from model import app
 # import openai.openai_client
 
-@app.route("/translate", methods=["POST"])
+
+app = Flask(__name__)
+CORS(app, resources={r"/*": {"origins": "http://localhost:5173"}})
+
+@app.route("/api/translate", methods=["POST"])
 def translate_picture():
-    data = flask.request.form
-    url = data["URL"]
-    src_lang = data["source_lang"]
-    target_lang = data["target_lang"]
-    transaction = ocr.ocr.detect_text(url, src_lang=src_lang if src_lang else None, target_lang=target_lang if target_lang else None)
-    translate.translator.translator(transaction)
-    return str(transaction)
+    try:
+        # Parse JSON data from the request
+        data = request.json
+        url = data.get("URL")  # Use .get() to avoid KeyError
+        src_lang = data.get("source_lang")
+        target_lang = data.get("target_lang")
+
+        if not url:
+            return jsonify({"error": "URL is required"}), 400
+
+        # Perform OCR and translation
+        transaction = ocr.ocr.detect_text(url, src_lang=src_lang, target_lang=target_lang)
+        translate.translator.translator(transaction)
+        return jsonify({"transaction": str(transaction)})
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
     with app.app_context():
