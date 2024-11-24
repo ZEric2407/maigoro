@@ -23,9 +23,12 @@
 				Welcome to Maigoro!
 			</svelte:fragment>
 			<svelte:fragment slot="paragraph">
-				Capture everything in a single frame bringing stories and senses together. <br> Enrich your mind 
-                with wisdom and knowledge with the new cultural context feature!
-                Seize the moment by capturing the cultural essence and share the story beyond a snapshot.
+				Seize the moment by capturing the cultural essence and share the story beyond a snapshot!
+				<br> <br>
+				Enrich your mind with wisdom and knowledge with the new cultural context feature!
+				<br> <br>
+				Capture everything in a single frame bringing stories and senses together!
+                
 
 			</svelte:fragment>
 			<GradientButton 
