@@ -14,15 +14,14 @@ logging.basicConfig(
     format="%(asctime)s - %(levelname)s - %(message)s"
 )
 
+openai_client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
 class Text(BaseModel):
     string: str
 
 def culturize(instance):
     logging.info("Starting the culturized function.")
 
-    client = OpenAI(
-        api_key=os.environ.get("OPENAI_API_KEY")
-    )
 
     translated_text = instance.translated_text
     logging.info(f"Translated text received: {translated_text}")
@@ -34,7 +33,7 @@ def culturize(instance):
     logging.info("Sending request to OpenAI for significant objects.")
 
     try:
-        filter_response = client.beta.chat.completions.parse(
+        filter_response = openai_client.beta.chat.completions.parse(
             model="gpt-4o-mini",
             messages=[
                 {"role": "system", "content": "You are a helpful assistant."},
@@ -61,7 +60,7 @@ def culturize(instance):
     )
 
     try: 
-        cultural_response = client.beta.chat.completions.parse(
+        cultural_response = openai_client.beta.chat.completions.parse(
             model="gpt-4o-mini",
             messages=[
                 {"role": "system", "content": "You are a helpful assistant."},
@@ -80,6 +79,37 @@ def culturize(instance):
         logging.error(f"Error during OpenAI request for culture: {e}")
         return
 
-
     instance.cultural_significance = cultural_response_content
     logging.info("Culturized function completed successfully.")
+
+def landmarks(l_instance):
+    logging.info("Starting the landmarks function.")
+
+    landmarks = l_instance.description
+
+    landmark_query = (
+        "ChatGPT: [SHORTEN: For each of the following landmarks in the following list: " + landmarks +
+        ", give an interesting fact about it in a few words]"
+    )
+
+    try: 
+        landmark_response = openai_client.beta.chat.completions.parse(
+            model="gpt-4o-mini",
+            messages=[
+                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "user", "content": landmark_query}
+            ],
+            max_completion_tokens=2000,
+            response_format=Text,
+        )
+        logging.info(f"LANDMARK RESPONSE: {landmark_response}")
+
+        landmark_response_content = landmark_response.choices[0].message.parsed.string
+
+        logging.info(f"Landmark response received: {landmark_response_content}")
+    except Exception as e:
+        logging.error(f"Error during OpenAI request for landmarks: {e}")
+        return
+
+    l_instance.cultural_significance = landmark_response_content
+    logging.info("Landmarks function completed successfully.")
