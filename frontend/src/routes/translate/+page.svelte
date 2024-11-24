@@ -1,102 +1,10 @@
 <script>
   import { onMount } from 'svelte';
   import { GradientButton, Label, Select, Spinner } from 'flowbite-svelte';
+  import { countries1, countries2 } from './languages.js';
   
   let source_lang_val = null;
-  let target_lang_val = null;
-
-  let countries = [
-    { value: null, name: 'Auto-Detect' },
-    { value: "en", name: 'English' },
-    { value: "af", name: 'Afrikaans' },
-    { value: "sq", name: 'Albanian' },
-    { value: "alz", name: 'Alur' },
-    { value: "ar", name: 'Arabic' },
-    { value: "hy", name: 'Armenian' },
-    { value: "az", name: 'Azerbaijani' },
-    { value: "ban", name: 'Balinese' },
-    { value: "bts", name: 'Batak Simalungun' },
-    { value: "bn", name: 'Bengali' },
-    { value: "bs", name: 'Bosnian' },
-    { value: "br", name: 'Breton' },
-    { value: "bg", name: 'Bulgarian' },
-    { value: "bua", name: 'Buryat' },
-    { value: "yue", name: 'Cantonese' },
-    { value: "ca", name: 'Catalan' },
-    { value: "zh-CN", name: 'Chinese (Simplified)' },
-    { value: "zh-TW", name: 'Chinese (Traditional)' },
-    { value: "hr", name: 'Croatian' },
-    { value: "crh", name: 'Crimean Tatar' },
-    { value: "cs", name: 'Czech' },
-    { value: "da", name: 'Danish' },
-    { value: "nl", name: 'Dutch' },
-    { value: "eo", name: 'Esperanto' },
-    { value: "et", name: 'Estonian' },
-    { value: "fil", name: 'Filipino (Tagalog)' },
-    { value: "fi", name: 'Finnish' },
-    { value: "fr-FR", name: 'French (French)' },
-    { value: "fr-CA", name: 'French (Canadian)' },
-    { value: "ka", name: 'Georgian' },
-    { value: "de", name: 'German' },
-    { value: "el", name: 'Greek' },
-    { value: "ht", name: 'Haitian Creole' },
-    { value: "haw", name: 'Hawaiian' },
-    { value: "iw", name: 'Hebrew' },
-    { value: "hi", name: 'Hindi' },
-    { value: "hu", name: 'Hungarian' },
-    { value: "is", name: 'Icelandic' },
-    { value: "id", name: 'Indonesian' },
-    { value: "ga", name: 'Irish' },
-    { value: "it", name: 'Italian' },
-    { value: "ja", name: 'Japanese' },
-    { value: "jw", name: 'Javanese' },
-    { value: "kk", name: 'Kazakh' },
-    { value: "ko", name: 'Korean' },
-    { value: "ku", name: 'Kurdish (Kurmanji)' },
-    { value: "ckb", name: 'Kurdish (Sorani)' },
-    { value: "ky", name: 'Kyrgyz' },
-    { value: "lo", name: 'Lao' },
-    { value: "la", name: 'Latin' },
-    { value: "lv", name: 'Latvian' },
-    { value: "lt", name: 'Lithuanian' },
-    { value: "lb", name: 'Luxembourgish' },
-    { value: "mk", name: 'Macedonian' },
-    { value: "mg", name: 'Malagasy' },
-    { value: "ms", name: 'Malay' },
-    { value: "mt", name: 'Maltese' },
-    { value: "mn", name: 'Mongolian' },
-    { value: "my", name: 'Myanmar (Burmese)' },
-    { value: "ne", name: 'Nepali' },
-    { value: "no", name: 'Norwegian' },
-    { value: "fa", name: 'Persian' },
-    { value: "pl", name: 'Polish' },
-    { value: "pt", name: 'Portuguese' },
-    { value: "pa", name: 'Punjabi' },
-    { value: "rom", name: 'Romani' },
-    { value: "ro", name: 'Romanian' },
-    { value: "ru", name: 'Russian' },
-    { value: "sa", name: 'Sanskrit' },
-    { value: "sr", name: 'Serbian' },
-    { value: "scn", name: 'Sicilian' },
-    { value: "sk", name: 'Slovak' },
-    { value: "sl", name: 'Slovenian' },
-    { value: "so", name: 'Somali' },
-    { value: "es", name: 'Spanish' },
-    { value: "sv", name: 'Swedish' },
-    { value: "th", name: 'Thai' },
-    { value: "ts", name: 'Tsonga' },
-    { value: "tr", name: 'Turkish' },
-    { value: "tk", name: 'Turkmen' },
-    { value: "uk", name: 'Ukrainian' },
-    { value: "uz", name: 'Uzbek' },
-    { value: "vi", name: 'Vietnamese' },
-    { value: "cy", name: 'Welsh' },
-    { value: "xh", name: 'Xhosa' },
-    { value: "yi", name: 'Yiddish' },
-    { value: "yo", name: 'Yoruba' },
-    { value: "yua", name: 'Yucatec Maya' },
-    { value: "zu", name: 'Zulu' },
-  ];
+  let target_lang_val = "en";
 
   let savedImage = null;
   let isCameraOpen = false;
@@ -239,18 +147,18 @@
       <Spinner color="purple" size={10} />
     </div>
   {/if}
-
+    <!--Language selector-->
   <div style="display: flex; flex-direction:row; width:100%; margin-top:1%; justify-content:space-between">
-    <Label style="margin-left:20%">
+    <Label style="max-height: 300px; margin-left:20%">
       Source Language
-      <Select class="mt-2" style="width:200%" items={countries} bind:value={source_lang_val} />
+      <Select class="mt-2 dropdown" style="width:200%" items={countries1} bind:value={source_lang_val} />
     </Label>
-  
   
     <Label style="margin-right:30%">
       Target Language
-      <Select class="mt-2" style="width:200%" items={countries} bind:value={target_lang_val} />
+      <Select class="mt-2 " style="width:200%" items={countries2} bind:value={target_lang_val}  />
     </Label>
+    
   </div>
   <div class="my-8 mx-auto w-5/6 h-3/4 p-6 border rounded-lg shadow overflow-y-auto">
     {#if savedImage}
