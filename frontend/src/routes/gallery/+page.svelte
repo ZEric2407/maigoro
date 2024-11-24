@@ -43,7 +43,7 @@
     });
 </script>
 
-<h1 class="mb-8 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white" style="margin-top: 1%; margin-left:5%;">History (6 most recent)</h1>
+<h1 class="mb-8 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white" style="margin-top: 1%; margin-left:5%;">History</h1>
 <div class="grid grid-cols-2 md:grid-cols-3 gap-4" style="margin:5%; margin-top:1%">
     {#each images as image}
         <div class="relative group">
