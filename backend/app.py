@@ -55,6 +55,8 @@ def translate_picture():
         if transaction.src_language != transaction.target_language:
             logging.debug("Calling translator")
             translate.translator.translator(transaction)
+        else:
+            transaction.translated_text = transaction.original_text
 
         logging.debug("Calling Culturizer")
         openai_client.openai_client.culturize(transaction)
@@ -73,9 +75,23 @@ def translate_picture():
 def describe_landmark():
     try:
         # Parse JSON data from the request
-        data = request.json
-        url = data.get("URL")  # Use .get() to avoid KeyError
-        transactions = ocr.ocr.detect_landmark(url)
+        data = request
+        image_data = data.get("image")
+        
+        if not image_data:
+            logging.error("Image data not provided")
+            return jsonify({"error": "Image data is required"}), 400
+
+        image_data = image_data.split(",")[1]
+        filename = secure_filename(f"{uuid.uuid4().hex}.png")
+        filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+
+        with open(filepath, "wb") as f:
+            f.write(base64.b64decode(image_data))
+
+        transactions = ocr.ocr.detect_landmark(filepath)
+        for transaction in transactions:
+            openai_client.openai_client.landmarks(transaction)
         response_body = {"transaction": [transaction.to_dict() for transaction in transactions]}, 200
         repository.save_all(transactions)
         return response_body
@@ -92,8 +108,8 @@ def uploaded_file(filename):
 if __name__ == "__main__":
     with app.app_context():
         # Example for testing OCR and translation
-        transaction = ocr.ocr.detect_text("uploads\\tajmahal.jpg", target_lang=None)
-        translate.translator.translator(transaction)
-        print(str(transaction))
-        repository.save(transaction)
+        transactions = ocr.ocr.detect_landmark("uploads\\cn_tower.jpg")
+        for landmark in transactions:
+            openai_client.openai_client.landmarks(landmark)
+        repository.save_all(transactions)
     # app.run(host="0.0.0.0", port=5000, debug=True)
