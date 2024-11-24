@@ -5,8 +5,8 @@
 </script>
 
 <p class="about-text mx-20" style="margin-top: 25px;">
-	Are you tired of accidentally eating dog meat while visiting a foreign country or finding bugs in your 
-	cheese? Are you constantly annoyed at having to decipher hieroglyphs-like writting when you travel the 
+	Are you tired of accidentally eating repugnant food while visiting a foreign country or finding bugs in your 
+	cheese? Are you constantly annoyed at having to decipher cryptic writting when you travel the 
 	world? What about hard-to-read road signs that are too confusing? Don't worry, we got you! Maigoro is a handy app designed to make sure that you
     know exactly what you are looking at: Just take a picture and we'll provide you with descriptions, 
 	translations to a language of your choice, as well as some cultural context 
