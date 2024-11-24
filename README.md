@@ -59,7 +59,3 @@ After completing the installation steps, you can run both the backend and fronte
 
 ---
 
-## Additional Notes
-
-- **To Do: Google Lens API reverse search, elasticsearch vector searching, tesseract for text extraction
----
