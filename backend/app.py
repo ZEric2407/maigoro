@@ -8,6 +8,7 @@ import ocr.ocr
 import translate.translator
 import repository
 from model import app, db
+import logging
 # import openai.openai_client
 
 # Flask app configuration
@@ -22,34 +23,42 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+logging.basicConfig(level=logging.DEBUG)
+
 @app.route("/api/translate", methods=["POST"])
 def translate_picture():
     try:
-        # Parse JSON data from the request
+        logging.debug("Parsing JSON data from request")
         data = request.json
-        image_data = data.get("image")  # Base64 image string
+        image_data = data.get("image")
         src_lang = data.get("source_lang")
         target_lang = data.get("target_lang")
 
         if not image_data:
+            logging.error("Image data not provided")
             return jsonify({"error": "Image data is required"}), 400
 
-        # Decode the base64 image data and save it to the server
-        image_data = image_data.split(",")[1]  # Remove "data:image/png;base64," prefix
+        logging.debug("Decoding base64 image")
+        image_data = image_data.split(",")[1]
         filename = secure_filename(f"{uuid.uuid4().hex}.png")
         filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
 
         with open(filepath, "wb") as f:
             f.write(base64.b64decode(image_data))
 
-        # Construct the file URL
-        image_url = f"http://localhost:5000/uploads/{filename}"
+        logging.debug(f"Image saved at {filepath}")
 
-        # Perform OCR and translation using the image URL
-        transaction = ocr.ocr.detect_text(image_url, src_lang=src_lang, target_lang=target_lang)
+        logging.debug("Calling OCR detect_text")
+        transaction = ocr.ocr.detect_text(filepath, src_lang=src_lang, target_lang=target_lang)
+
+        logging.debug("Calling translator")
         translate.translator.translator(transaction)
+
+        logging.debug("Saving transaction")
         repository.save(transaction)
-        return jsonify({"transaction": str(transaction)})
+
+        logging.debug("Transaction completed successfully")
+        return jsonify({"transaction": str(transaction)}), 200
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
@@ -65,6 +74,7 @@ def describe_landmark():
         return transactions
     
     except Exception as e:
+        logging.error(f"Error occurred: {e}")
         return jsonify({"error": str(e)}), 500
 
 @app.route('/uploads/<filename>')
