@@ -35,7 +35,6 @@
 				<p class="text-gray-500 dark:text-gray-400">
 					Translation Services – Snap a photo or text to instantly translate into multiple languages.<br>
 					Cultural Significance and Context – Get detailed insights about cultural artifacts, symbols, or phrases to enhance understanding.<br>
-				Guided Wisdom – Use Maigoro as a tool for self-reflection by analyzing situations and offering advice rooted in philosophical or spiritual traditions.
 				</p>
 			</FaqItem>
 			<FaqItem>
@@ -49,9 +48,9 @@
 		</div>
 		<div>
 			<FaqItem>
-				<svelte:fragment slot="h3">Can I upload pictures directly from my app?</svelte:fragment>
+				<svelte:fragment slot="h3">Can I upload pictures directly?</svelte:fragment>
 				<p class="text-gray-500 dark:text-gray-400">
-					Yes! Whether you capture an image using the app or import a photo from your library, Maigoro makes it easy to explore and learn.
+					Yes! Whether you capture an image using your camera or import a photo from your library, Maigoro makes it easy to explore and learn.
 				</p>
 			</FaqItem>
 			<FaqItem>
@@ -59,7 +58,7 @@
 					>What's to come?</svelte:fragment
 				>
 				<p class="text-gray-500 dark:text-gray-400">
-					We are currently researching and developing hardware that people with disabilities can use such as 
+					This project can be expanded by developping hardware that people with disabilities can use such as 
 					wearable devices that will scan the surroundings of one's environment and communicate it
 					to the user. These devices will scan and interpret the environment, providing auditory or tactile 
 					feedback to users, enabling a more connected and accessible experience.	
