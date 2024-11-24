@@ -85,7 +85,7 @@
 </script>
 
 
-<div class="my-8 mx-auto max-w-lg p-4 border rounded-lg shadow">
+<div class="my-8 mx-auto w-11/12 h-screen p-6 border rounded-lg shadow overflow-y-auto">
   {#if savedImage}
     <!-- Show saved image -->
     <div class="relative">
