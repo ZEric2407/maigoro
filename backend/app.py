@@ -7,11 +7,10 @@ import uuid
 import ocr.ocr
 import translate.translator
 import repository
-from model import app
+from model import app, db
 # import openai.openai_client
 
 # Flask app configuration
-app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "http://localhost:5173"}})
 
 # Directory to save uploaded images
@@ -49,12 +48,22 @@ def translate_picture():
         # Perform OCR and translation using the image URL
         transaction = ocr.ocr.detect_text(image_url, src_lang=src_lang, target_lang=target_lang)
         translate.translator.translator(transaction)
-
-        # Optionally save the transaction
         repository.save(transaction)
+        return jsonify({"transaction": str(transaction)})
 
-        return jsonify({"transaction": str(transaction)}), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
+@app.route("/landmark", methods=["POST"])
+def describe_landmark():
+    try:
+        # Parse JSON data from the request
+        data = request.json
+        url = data.get("URL")  # Use .get() to avoid KeyError
+        transactions = ocr.ocr.detect_landmark(url)
+        repository.save_all(transactions)
+        return transactions
+    
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 

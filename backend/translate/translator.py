@@ -1,5 +1,4 @@
 import os
-import model
 
 from google.cloud import translate_v2 as translate
 

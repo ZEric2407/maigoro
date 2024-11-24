@@ -87,6 +87,36 @@ class TextTransaction(Base):
         fields = {field.strip("_") : val for field, val in self.__dict__.items() if not field in ["_sa_instance_state"]}
         return json.dumps(fields)
     
+class LandmarkTransaction(Base):
+    __tablename__ = "landmark"
+    _id: Mapped[int] = mapped_column(name="id", primary_key=True, autoincrement=True)
+    _description: Mapped[str] = mapped_column(name="description")
+    _cultural_significance: Mapped[str] = mapped_column(name="cultural_significance")
+
+    def __init__(self, description = "", cultural_significance = ""):
+        self._description = description
+        self._cultural_significance = cultural_significance
+
+    @property
+    def description(self):
+        return self._description
+
+    @description.setter
+    def description(self, desc):
+        self._description = desc
+
+    @property
+    def cultural_significance(self):
+        return self._cultural_significance
+    
+    @cultural_significance.setter
+    def cultural_significance(self, trivia):
+        self._cultural_significance = trivia
+
+    def __str__(self):
+        fields = {field.strip("_") : val for field, val in self.__dict__.items() if not field in ["_sa_instance_state"]}
+        return json.dumps(fields)
+
 if __name__ == "__main__":
     with app.app_context():
         db.drop_all()

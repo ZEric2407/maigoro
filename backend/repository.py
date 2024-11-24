@@ -1,18 +1,24 @@
-import sqlalchemy
-import flask_sqlalchemy
-import model
+from model import *
 
 def save(instance):
     if not instance:
         return
-    model.db.session.add(instance)
-    model.db.session.commit()
+    db.session.add(instance)
+    db.session.commit()
 
-def retrieve_all():
-    transactions = model.db.session.query(model.TextTransaction).all()
+def save_all(instances):
+    if not instances:
+        return
+    db.session.add_all(instances)
+    db.session.commit()
+
+def retrieve_all(is_landmark):
+    cls = LandmarkTransaction if is_landmark else TextTransaction
+    transactions = db.session.query(cls).all()
     return transactions
 
 if __name__ == "__main__":
-    with model.app.app_context():
-        for transaction in retrieve_all():
+    from model import app
+    with app.app_context():
+        for transaction in retrieve_all(True):
             print(transaction)
