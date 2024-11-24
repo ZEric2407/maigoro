@@ -61,6 +61,5 @@ After completing the installation steps, you can run both the backend and fronte
 
 ## Additional Notes
 
-- **Tesseract Installation**: Make sure to install Tesseract OCR on your system, as it is required for OCR functionality in the backend.
 - **To Do: Google Lens API reverse search, elasticsearch vector searching, tesseract for text extraction
 ---
