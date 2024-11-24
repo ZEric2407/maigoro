@@ -9,16 +9,24 @@
 
 <ul class="flex list-none flex-wrap justify-center p-0">
 	<li class="contact-item">
-		<strong>Eric</strong>
+		<a href="https://github.com/j279li" target="_blank" rel="noopener noreferrer">
+			<strong>Jack</strong>
+	</a>
 	</li>
 	<li class="contact-item">
-		<strong>Jack</strong>
+		<a href="https://github.com/ZEric2407" target="_blank" rel="noopener noreferrer">
+			<strong>Eric</strong>
+		</a>
 	</li>
 	<li class="contact-item">
-		<strong>Thibaut</strong>
+		<a href="https://github.com/Kaos1" target="_blank" rel="noopener noreferrer">
+			<strong>Thibaut</strong>
+		</a>
 	</li>
 	<li class="contact-item">
-		<strong>Frank</strong>
+		<a href="https://github.com/SteamyFuton" target="_blank" rel="noopener noreferrer">
+			<strong>Frank</strong>
+		</a>
 	</li>
 </ul>
 
