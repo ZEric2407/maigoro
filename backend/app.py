@@ -55,10 +55,11 @@ def translate_picture():
         translate.translator.translator(transaction)
 
         logging.debug("Saving transaction")
+        response_body = jsonify({"transaction": str(transaction)}), 200
         repository.save(transaction)
 
         logging.debug("Transaction completed successfully")
-        return jsonify({"transaction": str(transaction)}), 200
+        return response_body
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
