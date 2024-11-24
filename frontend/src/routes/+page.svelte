@@ -9,8 +9,17 @@
          { src: '/images/codejam3.jpg'},
          { src: '/images/codejam4.jpg'},
          { src: '/images/codejam5.jpg'},
+		 { src: '/images/putin in poutine.png'},
     ]
 </script>
+
+<style>
+	.carousel-image {
+	  object-fit: contain;
+	  width: 100%;        
+	  height: 100%;        
+	}
+  </style>
 
 <Section name="heroVisual" sectionClass="py-0">
 	<div class="mb-8 mr-auto place-self-center lg:col-span-4">
@@ -31,7 +40,7 @@
 				color='pinkToOrange'
 				size="xl"
 				class="inline-flex items-center justify-center"	>
-				<a href="/translate" class="inline-flex items-center justify-center">
+				<a href="/take-picture" class="inline-flex items-center justify-center">
                     Get Started <ArrowRightOutline size="md" class="-mr-1 ml-2" />
                 </a>
 			</GradientButton>
