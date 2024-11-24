@@ -58,7 +58,7 @@
 					>What's to come?</svelte:fragment
 				>
 				<p class="text-gray-500 dark:text-gray-400">
-					This project can be expanded by developping hardware that people with disabilities can use such as 
+					This project can be expanded by developing hardware that people with disabilities can use such as 
 					wearable devices that will scan the surroundings of one's environment and communicate it
 					to the user. These devices will scan and interpret the environment, providing auditory or tactile 
 					feedback to users, enabling a more connected and accessible experience.	
