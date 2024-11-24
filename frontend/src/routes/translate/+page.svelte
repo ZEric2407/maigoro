@@ -147,14 +147,15 @@
       <Spinner color="purple" size={10} />
     </div>
   {/if}
+  <h1 class="mb-8 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white" style="margin-top: 1%; margin-left:8%; margin-bottom:1%">Translate</h1>
     <!--Language selector-->
   <div style="display: flex; flex-direction:row; width:100%; margin-top:1%; justify-content:space-between">
-    <Label style="max-height: 300px; margin-left:20%">
+    <Label style="max-height: 300px; margin-left:19%">
       Source Language
       <Select class="mt-2 dropdown" style="width:200%" items={countries1} bind:value={source_lang_val} />
     </Label>
   
-    <Label style="margin-right:30%">
+    <Label style="margin-right:31%">
       Target Language
       <Select class="mt-2 " style="width:200%" items={countries2} bind:value={target_lang_val}  />
     </Label>

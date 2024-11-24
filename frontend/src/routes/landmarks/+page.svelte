@@ -140,6 +140,7 @@
         <Spinner color="purple" size={10} />
       </div>
     {/if}
+    <h1 class="mb-8 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white" style="margin-top: 1%; margin-left:8%; margin-bottom:1%">Landmarks</h1>
     <div class="my-8 mx-auto w-5/6 h-3/4 p-6 border rounded-lg shadow overflow-y-auto">
       {#if savedImage}
       <!-- Show saved image -->

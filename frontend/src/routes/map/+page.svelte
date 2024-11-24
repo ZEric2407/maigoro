@@ -258,7 +258,7 @@ async function fetchNearbyPlaces(type) {
 
     <!-- Style Selector -->
     <div class="style-selector">
-        <label for="style">Select Map Style:</label>
+        <label for="style" class="p-4 text-gray-900 dark:text-gray-100">Select Map Style:</label>
         <select id="style" on:change={(e) => updateMapStyle(e.target.value)}>
             <option value="silver">Silver</option>
             <option value="dark">Dark</option>
@@ -270,8 +270,8 @@ async function fetchNearbyPlaces(type) {
 
     <!-- Buttons -->
     <div class="button-container">
-        <Button color="info" on:click={() => fetchNearbyPlaces("restaurant")}>Find Restaurants</Button>
-        <Button color="info" on:click={() => fetchNearbyPlaces("lodging")}>Find Hotels</Button>
-        <Button color="info" on:click={() => fetchNearbyPlaces("toilet")}>Find Toilets</Button>
+        <Button class="p-4 text-gray-900 dark:text-gray-100" color="info" style="margin-bottom: 1%" on:click={() => fetchNearbyPlaces("restaurant")}>Find Restaurants</Button>
+        <Button class="p-4 text-gray-900 dark:text-gray-100" color="info" style="margin-bottom: 1%" on:click={() => fetchNearbyPlaces("lodging")}>Find Hotels</Button>
+        <Button class="p-4 text-gray-900 dark:text-gray-100" color="info" style="margin-bottom: 1%" on:click={() => fetchNearbyPlaces("toilet")}>Find Toilets</Button>
     </div>
 </div>
