@@ -181,19 +181,19 @@
         <div class="flex justify-center gap-4 mt-4">
           {#if isPhotoCaptured}
             <!-- Options after capturing a photo -->
-            <GradientButton color="purpleToPink" class="bg-yellow-500 text-white px-4 py-2 rounded" onclick={retakePhoto}>
+            <GradientButton color="pinkToOrange" class="bg-yellow-500 text-white px-4 py-2 rounded" onclick={retakePhoto}>
               Retake
             </GradientButton>
-            <GradientButton color="purpleToBlue" class="bg-green-500 text-white px-4 py-2 rounded" onclick={submitPhoto}>
+            <GradientButton color="greenToBlue" class="bg-green-500 text-white px-4 py-2 rounded" onclick={submitPhoto}>
               Submit
             </GradientButton>
           {:else}
             <!-- Capture and Close options -->
-            <GradientButton color="greenToBlue" class="bg-blue-500 text-white px-4 py-2 rounded" onclick={capturePhoto}>
-              Capture Photo
-            </GradientButton>
-            <GradientButton color="pinkToOrange" class="bg-red-500 text-white px-4 py-2 rounded" onclick={closeCamera}>
+            <GradientButton color="pinkToOrange" class="bg-blue-500 text-white px-4 py-2 rounded" onclick={closeCamera}>
               Close Camera
+            </GradientButton>
+            <GradientButton color="greenToBlue" class="bg-red-500 text-white px-4 py-2 rounded" onclick={capturePhoto}>
+              Capture Photo
             </GradientButton>
           {/if}
         </div>
