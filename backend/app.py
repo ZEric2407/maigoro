@@ -9,7 +9,7 @@ import translate.translator
 import repository
 from model import app, db
 import logging
-# import openai.openai_client
+# import openai_client.openai_client
 
 # Flask app configuration
 CORS(app, resources={r"/*": {"origins": "http://localhost:5173"}})
@@ -32,7 +32,7 @@ def translate_picture():
         data = request.json
         image_data = data.get("image")
         src_lang = data.get("source_lang")
-        target_lang = data.get("target_lang")
+        target_lang = data.get("target_lang", "en")
 
         if not image_data:
             logging.error("Image data not provided")
@@ -85,8 +85,8 @@ def uploaded_file(filename):
 if __name__ == "__main__":
     with app.app_context():
         # Example for testing OCR and translation
-        transaction = ocr.ocr.detect_text("spanish.jpg", target_lang="en")
+        transaction = ocr.ocr.detect_text("uploads\\tajmahal.jpg", target_lang=None)
         translate.translator.translator(transaction)
         print(str(transaction))
         repository.save(transaction)
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    # app.run(host="0.0.0.0", port=5000, debug=True)

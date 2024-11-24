@@ -9,6 +9,7 @@ logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "credentials.json"
 
 def detect_text(path, src_lang="", target_lang="en"):
+    target_lang = target_lang if target_lang else "en"
     try:
         logging.debug(f"Starting text detection for image: {path}")
         response = load_image(path=path, is_landmark=False, src_lang=src_lang)

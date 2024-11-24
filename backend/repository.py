@@ -17,6 +17,10 @@ def retrieve_all(is_landmark):
     transactions = db.session.query(cls).all()
     return transactions
 
+def reset_db():
+    db.drop_all()
+    db.create_all()
+
 if __name__ == "__main__":
     from model import app
     with app.app_context():
