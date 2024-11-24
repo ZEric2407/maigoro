@@ -5,8 +5,9 @@
 		NavBrand,
 		NavLi,
 		NavUl,
-		NavHamburger,
 		DarkMode,
+		Dropdown,
+		DropdownItem,
 		P
 	} from 'flowbite-svelte';
 	import {
@@ -14,6 +15,7 @@
 		FooterLinkGroup,
 		FooterLink
 	} from 'flowbite-svelte';
+	import { ChevronDownOutline } from 'flowbite-svelte-icons';
 	import { goto } from '$app/navigation';
 
 	function reloadPage() {
@@ -30,20 +32,23 @@
 	class="sticky start-0 top-0 z-20 w-full px-2 py-2.5 sm:px-4"
 	id="top-nav"
 >
-	<NavBrand href="/" on:click={reloadPage}>
+	<NavBrand href="/" onclick={reloadPage}>
 		<img src="/images/logo.png" class="ml-2 mr-2 h-16 w-16 rounded-full" alt="Logo" />
 		<P class="font-sans text-xl font-semibold text-[black]">Maigoro</P>
 	</NavBrand>
-
 	<div class="flex justify-end">
 		<NavUl>
-			<NavLi href="/translate" class="mr-4">Translate</NavLi>
-			<NavLi href="/landmark" class="mr-4">Landmark</NavLi>
+			<NavLi class="cursor-pointer">
+				Go!<ChevronDownOutline class="w-6 h-6 ms-2 text-primary-800 dark:text-white inline" />
+			</NavLi>
+			<Dropdown class="w-44 z-20">
+				<DropdownItem href="/translate">Translate</DropdownItem>
+				<DropdownItem href="/landmarks">Landmarks</DropdownItem>
+			</Dropdown>
 			<NavLi href="/about" class="mr-4">About</NavLi>
 			<NavLi href="/contact-us" class="mr-4">Contact Us</NavLi>
-		</NavUl>
+		</NavUl>	
 		<DarkMode/>
-
 	</div>
 </Navbar>
 
