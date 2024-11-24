@@ -10,6 +10,7 @@
          { src: '/images/codejam4.jpg'},
          { src: '/images/codejam5.jpg'},
 		 { src: '/images/codejam6.jpg'},
+		 { src: '/images/codejam7.jpg'},
     ]
 </script>
 
