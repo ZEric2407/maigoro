@@ -32,7 +32,7 @@ def analyze_cultural_significance(text_translation):
     cultural_significance_list = []
 
     for i in significant_words:
-        cultural_significance = "Given the following word:" + significant_words[i] + ", give the cultural significance of that word. Provide a consise explanation"
+        cultural_significance = "Given the following word:" + i + ", give the cultural significance of that word. Provide a consise explanation"
 
         cultural_response = client.chat.completions.create(
             model="gpt-4o-mini",
@@ -44,12 +44,10 @@ def analyze_cultural_significance(text_translation):
 
         cultural_significance_list.append(cultural_response.choices[0].message['content'])
 
-    for j in significant_words:
-        cultural_answer = j + ": " + cultural_significance_list[j]
+    for j in range(len(significant_words)):
+        cultural_answer =  significant_words[j]+ ": " + cultural_significance_list[j]
         print(cultural_answer)
 
-
-analyze_cultural_significance()
 
 """completion = client.chat.completions.create(
     model="gpt-4o-mini",
