@@ -20,7 +20,7 @@
 	<Faq>
 		<div>
 			<FaqItem>
-				<svelte:fragment slot="h3">What does "Maigorou" mean?</svelte:fragment>
+				<svelte:fragment slot="h3">What does "Maigoro" mean?</svelte:fragment>
 				<p class="text-gray-500 dark:text-gray-400">
 					Maigoro ( /ˈmaɪ-goʊ-roʊ/, also MY-go-roh ) is the 
 					personal guru that spiritually guides one, connecting 
