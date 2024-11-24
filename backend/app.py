@@ -6,8 +6,9 @@ from werkzeug.utils import secure_filename
 import uuid
 import ocr.ocr
 import translate.translator
+import openai_client.openai_client
 import repository
-from model import app, db
+from model import app
 import logging
 # import openai_client.openai_client
 
@@ -53,6 +54,9 @@ def translate_picture():
 
         logging.debug("Calling translator")
         translate.translator.translator(transaction)
+
+        logging.debug("Calling Culturizer")
+        openai_client.openai_client.culturize(transaction)
 
         logging.debug("Saving transaction")
         response_body = jsonify({"transaction": str(transaction)}), 200

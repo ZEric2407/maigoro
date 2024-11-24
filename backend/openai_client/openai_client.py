@@ -1,63 +1,85 @@
 import os
 import dotenv
 import ast
-dotenv.load_dotenv()  # Load environment variables from .env
-
+import logging
+from pydantic import BaseModel
 from openai import OpenAI
 
-def analyze_cultural_significance(text_translation):
+# Load environment variables
+dotenv.load_dotenv()
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s"
+)
+
+class Text(BaseModel):
+    string: str
+
+def culturize(instance):
+    logging.info("Starting the culturized function.")
+
     client = OpenAI(
-        api_key = os.environ.get("OPENAI_API_KEY")
+        api_key=os.environ.get("OPENAI_API_KEY")
     )
 
-    translated_text = text_translation.translated_text
+    translated_text = instance.translated_text
+    logging.info(f"Translated text received: {translated_text}")
 
-    filter = "Given the following text:"+ translated_text +", identify the most culturally significant words. Provide them as a JSON array of strings."
-
-    filter_response = client.chat.completions.create(
-        model="gpt-4o-mini",
-        messages=[
-            {"role": "system", "content": "You are a helpful assistant."},
-            {"role": "user", "content": filter}
-        ]
+    filter = (
+        "Given the following text: " + translated_text +
+        ", identify a maximum of three of the most culturally significant objects. Provide them as a JSON array of strings."
     )
+    logging.info("Sending request to OpenAI for significant objects.")
 
-    filtered_words = filter_response.choices[0].message['content']
     try:
-        significant_words = ast.literal_eval(filtered_words)
+        filter_response = client.beta.chat.completions.parse(
+            model="gpt-4o-mini",
+            messages=[
+                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "user", "content": filter}
+            ], 
+            frequency_penalty=-0.5,
+            max_completion_tokens=1000,
+            response_format=Text,
+        )
+
+        logging.info(f"FILTER RESPONSE: {filter_response}")
+
+
+        filter_response_content = filter_response.choices[0].message.parsed.string
+
+        logging.info(f"Filter response received: {filter_response_content}")
     except Exception as e:
-        print(f"Failed to parse the response: {filtered_words}")
-        significant_words = []
+        logging.error(f"Error during OpenAI request for filter: {e}")
+        return
+    
+    cultural_significance = (
+        "ChatGPT: [SHORTEN: For each of the following objects in the following list: " + filter_response_content +
+        ", explain the cultural significance of that object in a few words]"
+    )
 
-    cultural_significance_list = []
-
-    for i in significant_words:
-        cultural_significance = "Given the following word:" + i + ", give the cultural significance of that word. Provide a consise explanation"
-
-        cultural_response = client.chat.completions.create(
+    try: 
+        cultural_response = client.beta.chat.completions.parse(
             model="gpt-4o-mini",
             messages=[
                 {"role": "system", "content": "You are a helpful assistant."},
                 {"role": "user", "content": cultural_significance}
-            ]
+            ], 
+            frequency_penalty=-0.5,
+            max_completion_tokens=2000,
+            response_format=Text,
         )
+        logging.info(f"CULTURE RESPONSE: {cultural_response}")
 
-        cultural_significance_list.append(cultural_response.choices[0].message['content'])
+        cultural_response_content = cultural_response.choices[0].message.parsed.string
 
-    for j in range(len(significant_words)):
-        cultural_answer =  significant_words[j]+ ": " + cultural_significance_list[j]
-        print(cultural_answer)
+        logging.info(f"Cultural response received: {cultural_response_content}")
+    except Exception as e:
+        logging.error(f"Error during OpenAI request for culture: {e}")
+        return
 
 
-"""completion = client.chat.completions.create(
-    model="gpt-4o-mini",
-    messages=[
-        {"role": "system", "content": "You are a helpful assistant."},
-        {
-            "role": "user",
-            "content": "What is the sagrada familia?."
-        }
-    ]
-)
-
-print(completion.choices[0].message)"""
+    instance.cultural_significance = cultural_response_content
+    logging.info("Culturized function completed successfully.")
