@@ -45,6 +45,7 @@
 				<DropdownItem href="/translate">Translate</DropdownItem>
 				<DropdownItem href="/landmarks">Landmarks</DropdownItem>
 			</Dropdown>
+			<NavLi href="/gallery" class="mr-4">History</NavLi>
 			<NavLi href="/about" class="mr-4">About</NavLi>
 			<NavLi href="/contact-us" class="mr-4">Contact Us</NavLi>
 		</NavUl>	
