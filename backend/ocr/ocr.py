@@ -1,7 +1,8 @@
+import os
 from google.cloud import vision
+import model
 
-from translate.translator import *
-
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "credentials.json"
 IMAGES_PATH = "images\\"
 
 def detect_text(path, src_lang="", target_lang="en"):
@@ -21,15 +22,12 @@ def detect_text(path, src_lang="", target_lang="en"):
     src_lang = src_lang if src_lang else texts[0].locale
     original_text = texts[0].description
 
-    transaction = model.text_translation()
+    transaction = model.TextTransaction()
     transaction.original_text = original_text
     transaction.src_language = src_lang
     transaction.target_language = target_lang
     transaction.image_url = f"{IMAGES_PATH}{path}"
-
-    translator(transaction)
-
-    print(transaction.jsonify())
+    
     return transaction
 
 if __name__ == "__main__":

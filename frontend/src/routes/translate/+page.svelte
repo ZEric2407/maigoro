@@ -1,5 +1,6 @@
 <script>
   import { onMount } from 'svelte';
+   import { GradientButton } from 'flowbite-svelte';
 
   let savedImage = null;
   let isCameraOpen = false;
@@ -166,27 +167,27 @@
         <div class="flex justify-center gap-4 mt-4">
           {#if isPhotoCaptured}
             <!-- Options after capturing a photo -->
-            <button class="bg-yellow-500 text-white px-4 py-2 rounded" onclick={retakePhoto}>
+            <GradientButton color="pinkToOrange" class="bg-yellow-500 text-white px-4 py-2 rounded" onclick={retakePhoto}>
               Retake
-            </button>
-            <button class="bg-green-500 text-white px-4 py-2 rounded" onclick={submitPhoto}>
+            </GradientButton>
+            <GradientButton color="greenToBlue" class="bg-green-500 text-white px-4 py-2 rounded" onclick={submitPhoto}>
               Submit
-            </button>
+            </GradientButton>
           {:else}
             <!-- Capture and Close options -->
-            <button class="bg-blue-500 text-white px-4 py-2 rounded" onclick={capturePhoto}>
+            <GradientButton color="cyanToBlue" class="bg-blue-500 text-white px-4 py-2 rounded" onclick={capturePhoto}>
               Capture Photo
-            </button>
-            <button class="bg-red-500 text-white px-4 py-2 rounded" onclick={closeCamera}>
+            </GradientButton>
+            <GradientButton color="purpleToPink" class="bg-red-500 text-white px-4 py-2 rounded" onclick={closeCamera}>
               Close Camera
-            </button>
+            </GradientButton>
           {/if}
         </div>
       </div>
     </div>
   {:else if !savedImage}
-    <button class="mt-4 bg-purple-500 text-white px-4 py-2 rounded" onclick={openCamera}>
+    <GradientButton color="purpleToBlue" class="mt-4 bg-purple-500 text-white px-4 py-2 rounded" onclick={openCamera}>
       Open Camera
-    </button>
+    </GradientButton>
   {/if}
 </div>
