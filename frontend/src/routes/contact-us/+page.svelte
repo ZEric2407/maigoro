@@ -27,9 +27,9 @@
 	.contact-item {
 		margin: 10px 20px;
 		padding: 15px;
-		border: 2px solid #ac1dd4;
+		border: 2px solid #ffffff;
 		border-radius: 8px;
-		background-color: #e7bce4;
+		background-color: #083950;
 		width: 12vw;
 		text-align: center;
 		transition: transform 0.2s ease-in-out;
@@ -43,6 +43,6 @@
 		display: block;
 		margin-bottom: 5px;
 		font-size: 1.2em;
-		color: #ac1dd4;
+		color: #e9d7ee;
 	}
 </style>
