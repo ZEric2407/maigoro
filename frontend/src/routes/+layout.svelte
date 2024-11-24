@@ -44,6 +44,7 @@
 			<Dropdown class="w-44 z-20">
 				<DropdownItem href="/translate">Translate</DropdownItem>
 				<DropdownItem href="/landmarks">Landmarks</DropdownItem>
+				<DropdownItem href="/map">Maps</DropdownItem>
 			</Dropdown>
 			<NavLi href="/gallery" class="mr-4">History</NavLi>
 			<NavLi href="/about" class="mr-4">About</NavLi>
