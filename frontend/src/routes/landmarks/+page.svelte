@@ -1,7 +1,6 @@
 <script>
     import { onMount } from 'svelte';
     import { GradientButton, Label, Select, Spinner } from 'flowbite-svelte';
-    import { countries1, countries2 } from '../../libs/languages.js';
     
     let source_lang_val = null;
     let target_lang_val = "en";
@@ -141,19 +140,6 @@
         <Spinner color="purple" size={10} />
       </div>
     {/if}
-      <!--Language selector-->
-    <div style="display: flex; flex-direction:row; width:100%; margin-top:1%; justify-content:space-between">
-      <Label style="max-height: 300px; margin-left:20%">
-        Source Language
-        <Select class="mt-2 dropdown" style="width:200%" items={countries1} bind:value={source_lang_val} />
-      </Label>
-    
-      <Label style="margin-right:30%">
-        Target Language
-        <Select class="mt-2 " style="width:200%" items={countries2} bind:value={target_lang_val}  />
-      </Label>
-      
-    </div>
     <div class="my-8 mx-auto w-5/6 h-3/4 p-6 border rounded-lg shadow overflow-y-auto">
       {#if savedImage}
       <!-- Show saved image -->
