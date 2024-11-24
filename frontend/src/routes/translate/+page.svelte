@@ -162,23 +162,32 @@
   </div>
   <div class="my-8 mx-auto w-5/6 h-3/4 p-6 border rounded-lg shadow overflow-y-auto">
     {#if savedImage}
-      <!-- Show saved image -->
-      <div class="relative">
-        <button
-          class="absolute top-2 right-2 bg-gray-200 rounded-full p-2"
-          onclick={removeImage}>
-          ✕
-        </button>
-        <div style="display: flex; flex-direction:row">
+    <!-- Show saved image -->
+    <div class="flex">
+      <!-- Image Section -->
+      <div class="w-1/2 p-4 flex justify-center items-center border-r">
+        <div class="relative">
+          <button
+            class="absolute top-2 right-2 bg-gray-200 rounded-full p-2 shadow hover:bg-gray-300"
+            onclick={removeImage}>
+            ✕
+          </button>
           <img src={savedImage} alt="Saved" class="h-auto max-h-96 object-contain" />
-          {#if hasData}
-            <div style="display: flex; flex-direction:column">
-              <p style="max-width:50%; float:right" class="bg-gray-200 p-2"><b>Translation: </b>{translationData.translated_text}</p>
-              <p style="max-width:50%; float:right" class="bg-gray-200 p-2"><b>Culture Trivia: </b>{translationData.cultural_significance}</p>
-            </div>
-          {/if}
         </div>
       </div>
+
+      <!-- Text Section -->
+      {#if hasData}
+        <div class="w-1/2 p-6 flex flex-col justify-center">
+          <p class="p-4 mb-4 rounded shadow text-gray-900 dark:text-gray-100">
+            <b>Translation:</b> {translationData.translated_text}
+          </p>
+          <p class="p-4 rounded shadow text-gray-900 dark:text-gray-100">
+            <b>Culture Trivia:</b> {translationData.cultural_significance}
+          </p>
+        </div>
+      {/if}
+    </div>
     {:else}
       <!-- Show dropzone -->
       <div
