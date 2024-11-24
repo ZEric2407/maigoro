@@ -37,6 +37,7 @@
 
 	<div class="flex justify-end">
 		<NavUl>
+			<NavLi href="/translate" class="mr-4">Translate</NavLi>
 			<NavLi href="/about" class="mr-4">About</NavLi>
 			<NavLi href="/contact-us" class="mr-4">Contact Us</NavLi>
 		</NavUl>
