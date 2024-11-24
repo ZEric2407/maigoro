@@ -1,7 +1,7 @@
 <script>
     import { onMount } from 'svelte';
     import { GradientButton, Label, Select, Spinner } from 'flowbite-svelte';
-    import { countries1, countries2 } from './languages.js';
+    import { countries1, countries2 } from '../../libs/languages.js';
     
     let source_lang_val = null;
     let target_lang_val = "en";
