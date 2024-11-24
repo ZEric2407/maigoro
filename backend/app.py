@@ -52,14 +52,15 @@ def translate_picture():
         logging.debug("Calling OCR detect_text")
         transaction = ocr.ocr.detect_text(filepath, src_lang=src_lang, target_lang=target_lang)
 
-        logging.debug("Calling translator")
-        translate.translator.translator(transaction)
+        if transaction.src_language != transaction.target_language:
+            logging.debug("Calling translator")
+            translate.translator.translator(transaction)
 
         logging.debug("Calling Culturizer")
         openai_client.openai_client.culturize(transaction)
 
         logging.debug("Saving transaction")
-        response_body = jsonify({"transaction": str(transaction)}), 200
+        response_body = {"transaction": transaction.to_dict()}, 200
         repository.save(transaction)
 
         logging.debug("Transaction completed successfully")
@@ -75,8 +76,9 @@ def describe_landmark():
         data = request.json
         url = data.get("URL")  # Use .get() to avoid KeyError
         transactions = ocr.ocr.detect_landmark(url)
+        response_body = {"transaction": [transaction.to_dict() for transaction in transactions]}, 200
         repository.save_all(transactions)
-        return transactions
+        return response_body
     
     except Exception as e:
         logging.error(f"Error occurred: {e}")

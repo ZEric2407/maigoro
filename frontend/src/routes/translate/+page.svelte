@@ -105,7 +105,12 @@
   let stream = null;
   let videoSource;
   let loading = false;
-
+  let hasData = false;
+  let translationData = {
+    original_text : "",
+    translated_text : "",
+    cultural_significance : ""
+  };
   const dropHandle = (event) => {
   event.preventDefault();
   const files = event.dataTransfer?.files || event.target?.files;
@@ -180,6 +185,7 @@
 
   const removeImage = () => {
     savedImage = null;
+    hasData = false;
   };
 
   const sendImageToBackend = async (imageData) => {
@@ -200,6 +206,10 @@
     if (response.ok) {
       const data = await response.json();
       console.log('Backend response:', data);
+      translationData.cultural_significance = data.transaction.cultural_significance;
+      translationData.original_text = data.transaction.original_text;
+      translationData.translated_text = data.transaction.translated_text;
+      hasData = true;
       return data;
     } else {
       console.error('Error sending image to backend:', response.statusText);
@@ -251,7 +261,15 @@
           onclick={removeImage}>
           ✕
         </button>
-        <img src={savedImage} alt="Saved" class="h-auto max-h-96 object-contain" />
+        <div style="display: flex; flex-direction:row">
+          <img src={savedImage} alt="Saved" class="h-auto max-h-96 object-contain" />
+          {#if hasData}
+            <div style="display: flex; flex-direction:column">
+              <p style="max-width:50%; float:right" class="bg-gray-200 p-2"><b>Translation: </b>{translationData.translated_text}</p>
+              <p style="max-width:50%; float:right" class="bg-gray-200 p-2"><b>Culture Trivia: </b>{translationData.cultural_significance}</p>
+            </div>
+          {/if}
+        </div>
       </div>
     {:else}
       <!-- Show dropzone -->

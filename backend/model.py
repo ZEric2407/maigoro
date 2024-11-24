@@ -83,9 +83,12 @@ class TextTransaction(Base):
     def translated_text(self, txt):
         self._translated_text = txt
 
-    def __str__(self):
+    def to_dict(self):
         fields = {field.strip("_") : val for field, val in self.__dict__.items() if not field in ["_sa_instance_state"]}
-        return json.dumps(fields)
+        return fields
+
+    def __str__(self):
+        return json.dumps(self.to_dict())
     
 class LandmarkTransaction(Base):
     __tablename__ = "landmark"
@@ -113,9 +116,12 @@ class LandmarkTransaction(Base):
     def cultural_significance(self, trivia):
         self._cultural_significance = trivia
 
-    def __str__(self):
+    def to_dict(self):
         fields = {field.strip("_") : val for field, val in self.__dict__.items() if not field in ["_sa_instance_state"]}
-        return json.dumps(fields)
+        return fields
+
+    def __str__(self):
+        return json.dumps(self.to_dict)
 
 if __name__ == "__main__":
     with app.app_context():
