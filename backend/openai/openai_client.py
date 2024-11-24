@@ -10,10 +10,9 @@ client = OpenAI(
     api_key = os.environ.get("OPENAI_API_KEY")
 )
 
-original_text = text_translation.original_text
-target_language = text_translation.target_language
+translated_text = text_translation.translated_text
 
-filter = "Given the following text:"+ original_text +", identify the most culturally significant words. Provide them as a JSON array of strings."
+filter = "Given the following text:"+ translated_text +", identify the most culturally significant words. Provide them as a JSON array of strings."
 
 filter_response = client.chat.completions.create(
     model="gpt-4o-mini",
