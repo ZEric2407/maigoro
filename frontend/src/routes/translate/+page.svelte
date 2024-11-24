@@ -74,6 +74,28 @@
     savedImage = null;
   };
 
+  const sendImageToBackend = async (imageData) => {
+    try {
+      const response = await fetch('http://localhost:5000/api/translate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ image: imageData }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log('Backend response:', data);
+        // Handle the backend response (e.g., display results)
+      } else {
+        console.error('Error sending image to backend:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error during backend call:', error);
+    }
+  };
+
   onMount(() => {
     // Optional cleanup if necessary
     return () => {
@@ -84,8 +106,7 @@
   });
 </script>
 
-
-<div class="my-8 mx-auto w-11/12 h-screen p-6 border rounded-lg shadow overflow-y-auto">
+<div class="my-8 mx-auto w-5/6 h-3/4 p-6 border rounded-lg shadow overflow-y-auto">
   {#if savedImage}
     <!-- Show saved image -->
     <div class="relative">
@@ -94,7 +115,7 @@
         onclick={removeImage}>
         ✕
       </button>
-      <img src={savedImage} alt="Saved" class="w-full h-auto" />
+      <img src={savedImage} alt="Saved" class="h-auto max-h-96 object-contain" />
     </div>
   {:else}
     <!-- Show dropzone -->
